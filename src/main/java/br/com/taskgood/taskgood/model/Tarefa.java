@@ -1,5 +1,10 @@
 package br.com.taskgood.taskgood.model;
 
+import br.com.taskgood.taskgood.model.apps.AplicativoFactory;
+import br.com.taskgood.taskgood.model.dispositivos.DispositivoFactory;
+import br.com.taskgood.taskgood.model.dto.TarefaDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tarefa {
@@ -11,6 +16,27 @@ public class Tarefa {
     private List<Dispositivo> dispositivosAssociados;
     private List<Aplicativo> aplicativosAssociados;
 
+    public Tarefa(TarefaDTO dto) {
+        this.titulo = dto.getTitulo();
+        this.conteudo = dto.getConteudo();
+        this.duracaoEmMinutos = dto.getDuracaoEmMinutos();
+        this.usuarioId = dto.getUsuarioId();
+
+        if (dto.getDispositivos() != null) {
+            this.dispositivosAssociados = new ArrayList<>();
+            dto.getDispositivos().forEach(dispositivoDTO -> {
+                dispositivosAssociados.add(DispositivoFactory.criarDispositivo(dispositivoDTO));
+            });
+        }
+
+        if (dto.getAplicativos() != null) {
+            this.aplicativosAssociados = new ArrayList<>();
+            dto.getAplicativos().forEach(aplicativoDTO -> {
+                aplicativosAssociados.add(AplicativoFactory.criarAplicativo(aplicativoDTO));
+            });
+        }
+
+    }
 
 
     public Long getId() {
@@ -60,6 +86,7 @@ public class Tarefa {
     public void setAplicativosAssociados(List<Aplicativo> aplicativosAssociados) {
         this.aplicativosAssociados = aplicativosAssociados;
     }
+
     public Long getUsuarioId() {
         return usuarioId;
     }

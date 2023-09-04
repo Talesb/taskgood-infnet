@@ -5,6 +5,11 @@ import br.com.taskgood.taskgood.model.Registravel;
 
 public class TeamsAgenda extends Registravel implements Aplicativo {
 
+
+    public TeamsAgenda(String codigoPlataforma) {
+        this.codigoPlataforma = codigoPlataforma;
+    }
+
     private String codigoPlataforma;
 
     public void setCodigoPlataforma(String codigoPlataforma) {

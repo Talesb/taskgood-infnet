@@ -4,6 +4,7 @@ import br.com.taskgood.taskgood.model.Tarefa;
 import br.com.taskgood.taskgood.model.Usuario;
 import br.com.taskgood.taskgood.model.dto.TarefaDTO;
 import br.com.taskgood.taskgood.repository.TarefaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,11 @@ import java.util.List;
 @Service
 public class TarefaService {
 
+    @Autowired
     private TarefaRepository tarefaRepository;
+
+    @Autowired
+    UsuarioService usuarioService;
 
     public TarefaService(TarefaRepository tarefaRepository) {
         this.tarefaRepository = tarefaRepository;
@@ -22,12 +27,15 @@ public class TarefaService {
     }
 
     public Tarefa criarTarefa(TarefaDTO dto) {
-        Tarefa tarefa = new Tarefa();
-        this.tarefaRepository.salvar();
+        Tarefa tarefa = new Tarefa(dto);
+        this.tarefaRepository.salvar(tarefa);
+        Usuario usuario = this.usuarioService.obterUsuario(dto.getUsuarioId());
+        usuario.adicionarTarefas(tarefa);
+        this.usuarioService.atualizarUsuario(usuario);
         return tarefa;
     }
 
-    public Tarefa obterPorId(Long id){
+    public Tarefa obterPorId(Long id) {
         return this.tarefaRepository.obterPorId(id);
     }
 
@@ -48,9 +56,8 @@ public class TarefaService {
     }
 
 
-    public List<Tarefa> obterTodasTarefasPorUsuario(Usuario usuario) {
-
-        return null;
+    public List<Tarefa> obterTodasTarefasPorUsuario(Long usuarioId) {
+        return this.tarefaRepository.obterTodasPorUsuario(usuarioId);
     }
 
 

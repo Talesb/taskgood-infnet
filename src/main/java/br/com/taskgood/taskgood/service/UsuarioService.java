@@ -2,6 +2,7 @@ package br.com.taskgood.taskgood.service;
 
 import br.com.taskgood.taskgood.model.Usuario;
 import br.com.taskgood.taskgood.model.dto.UsuarioDTO;
+import br.com.taskgood.taskgood.repository.UsuarioMockDB;
 import br.com.taskgood.taskgood.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,10 @@ public class UsuarioService {
     }
 
 
+    public void atualizarUsuario(Usuario usuario) {
+        if (usuario.getId() != null) {
+            this.deletarUsuario(usuario.getId());
+            UsuarioMockDB.getInstance().getDataBase().put(usuario.getId(), usuario);
+        }
+    }
 }

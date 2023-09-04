@@ -7,6 +7,7 @@ public class UsuarioRepository {
     public Usuario salvar(Usuario usuario) {
         Long index = UsuarioMockDB.getInstance().getIndex();
         UsuarioMockDB.getInstance().getDataBase().put(index, usuario);
+        usuario.setId(index);
         UsuarioMockDB.getInstance().setIndex(index+1);
         return usuario;
     }

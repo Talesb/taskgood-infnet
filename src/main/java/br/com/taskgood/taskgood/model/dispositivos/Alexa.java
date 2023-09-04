@@ -5,6 +5,10 @@ import br.com.taskgood.taskgood.model.Registravel;
 
 public class Alexa extends Registravel implements Dispositivo {
 
+    public Alexa(Long dispositivoId) {
+        this.dispositivoId = dispositivoId;
+    }
+
     private Long dispositivoId;
 
     public void setDispositivoId(Long dispositivoId) {
@@ -13,7 +17,7 @@ public class Alexa extends Registravel implements Dispositivo {
 
     @Override
     public Long getDispositivoId() {
-        return null;
+        return dispositivoId;
     }
 
     @Override

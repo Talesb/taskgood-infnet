@@ -5,6 +5,10 @@ import br.com.taskgood.taskgood.model.Registravel;
 
 public class GoogleAgenda extends Registravel implements Aplicativo {
 
+    public GoogleAgenda(String codigoPlataforma) {
+        this.codigoPlataforma = codigoPlataforma;
+    }
+
     private String codigoPlataforma;
 
     public void setCodigoPlataforma(String codigoPlataforma) {

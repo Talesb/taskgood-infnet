@@ -2,6 +2,7 @@ package br.com.taskgood.taskgood.model;
 
 import br.com.taskgood.taskgood.model.dto.UsuarioDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -65,7 +66,11 @@ public class Usuario {
         return tarefas;
     }
 
-    public void setTarefas(List<Tarefa> tarefas) {
-        this.tarefas = tarefas;
+    public void adicionarTarefas(Tarefa tarefa) {
+        if(tarefas==null){
+            tarefas = new ArrayList<>();
+        }
+
+        tarefas.add(tarefa);
     }
 }

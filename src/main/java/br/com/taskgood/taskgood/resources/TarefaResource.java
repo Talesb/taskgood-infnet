@@ -16,18 +16,16 @@ import java.util.List;
 @RequestMapping("/tarefa")
 public class TarefaResource {
 
-    @Autowired
-    UsuarioService usuarioService;
+
 
     @Autowired
     TarefaService tarefaService;
 
     @GetMapping()
     public List<Tarefa> obterPorUsuarioId(@RequestParam(name = "usuarioid") String usuarioId) {
-        Usuario usuario = this.usuarioService.obterUsuario(Long.parseLong(usuarioId));
-        return tarefaService.obterTodasTarefasPorUsuario(usuario);
+        return tarefaService.obterTodasTarefasPorUsuario(Long.parseLong(usuarioId));
     }
-
+    @PostMapping
     public void adicionarTarefa(@RequestBody TarefaDTO tarefa){
         this.tarefaService.adicionarTarefa(tarefa);
 

@@ -11,7 +11,7 @@ public class TarefaDTO {
     private Long duracaoEmMinutos;
     private Long usuarioId;
     private List<DispositivoDTO> dispositivos;
-    private List<AplicativoDTO> aplicativoDTOS;
+    private List<AplicativoDTO> aplicativos;
 
 
     public String getTitulo() {
@@ -46,19 +46,20 @@ public class TarefaDTO {
         this.dispositivos = dispositivos;
     }
 
-    public List<AplicativoDTO> getAplicativoDTOS() {
-        return aplicativoDTOS;
-    }
-
-    public void setAplicativoDTOS(List<AplicativoDTO> aplicativoDTOS) {
-        this.aplicativoDTOS = aplicativoDTOS;
-    }
-
     public Long getUsuarioId() {
         return usuarioId;
     }
 
     public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+
+    public List<AplicativoDTO> getAplicativos() {
+        return aplicativos;
+    }
+
+    public void setAplicativos(List<AplicativoDTO> aplicativos) {
+        this.aplicativos = aplicativos;
     }
 }
